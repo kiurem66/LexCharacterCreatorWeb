@@ -1,0 +1,9 @@
+.character-creator-view aside {
+  top: calc(var(--lumo-space-xl) + var(--_vaadin-app-layout-navbar-offset-size));
+}
+
+@media (min-width: 1024px) {
+  .character-creator-view main {
+    grid-template-columns: auto 324px;
+  }
+}
