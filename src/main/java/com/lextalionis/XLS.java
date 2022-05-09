@@ -1,5 +1,6 @@
 package com.lextalionis;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -16,11 +17,11 @@ public class XLS {
 
     private XLS(){}
 
-    public static void export(Character character, String path) throws IOException{
-        export(character, path, true);
+    public static ByteArrayOutputStream export(Character character) throws IOException{
+        return export(character, true);
     }
 
-    public static void export(Character character, String path, boolean skipClan) throws IOException{
+    public static ByteArrayOutputStream export(Character character, boolean skipClan) throws IOException{
         XSSFWorkbook wb = new XSSFWorkbook(XLS.class.getResourceAsStream("media/template.xlsx"));
         XSSFSheet sheet = wb.getSheet("Scheda");
         writeToCell(sheet, 0, 5, character.getName());
@@ -45,10 +46,11 @@ public class XLS {
         writeProCon(sheet, character.pIterator(), skipClan);
         writeDisciplines(sheet, character.discIterator());
 
-        FileOutputStream fileOut = new FileOutputStream(path); 
-        wb.write(fileOut);
-        fileOut.close();
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        wb.write(bos);
         wb.close();
+        return bos;
+        
     }
 
     private static void writeToCell(XSSFSheet sheet, int r, int c, String v){
