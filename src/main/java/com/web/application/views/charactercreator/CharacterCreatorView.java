@@ -383,7 +383,8 @@ public class CharacterCreatorView extends VerticalLayout {
         b.addClickListener(e -> {
             StreamResource sr = new StreamResource("Scheda.xlsx", () -> Filefactory());
             StreamRegistration registration = VaadinSession.getCurrent().getResourceRegistry().registerResource(sr);
-            UI.getCurrent().getPage().setLocation(registration.getResourceUri());
+            UI.getCurrent().getPage().open(registration.getResourceUri().toString());
+            
         });
         add(b);
 
