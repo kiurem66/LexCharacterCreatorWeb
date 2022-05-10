@@ -345,6 +345,7 @@ public class CharacterCreatorView extends VerticalLayout {
                 }
                 character.addStile(s);
                 updateSkills();
+                updateBloodWillPx();
                 dialog.close();
             });
             dialog.add(select);
@@ -415,6 +416,7 @@ public class CharacterCreatorView extends VerticalLayout {
             character.addProCon(p);
             updateBloodWillPx();
             updateSkills();
+            dialog.close();
         });
         formLayout.add(confirm, 2);
         dialog.add(formLayout);
