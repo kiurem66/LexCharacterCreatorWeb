@@ -4,11 +4,6 @@ public class RevenantClan {
     private RevenantClan(){}
 
     private static class Revenant extends Ghoul{
-        public Revenant(){
-            ProCon p = new ProCon("Difetto di clan", 0);
-            p.setClan(true);
-            addProCon(p);
-        }
     }
 
     public static class Bratovich extends Revenant{

@@ -4,9 +4,10 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.NumberField;
@@ -35,14 +36,13 @@ import com.lextalionis.*;
 public class CharacterCreatorView extends VerticalLayout {
 
     private class SkillElement extends FormLayout{
-        
-        private Skill skill;
         private Component left;
         private Label name;
         private NumberField level;
         private int type; //0: influenza, 1 disciplina, 2 stile
     
         public SkillElement(Skill skill){
+
             setResponsiveSteps(
                 new FormLayout.ResponsiveStep("0", 3)
             );
@@ -91,7 +91,37 @@ public class CharacterCreatorView extends VerticalLayout {
         }
     }
     
+    private class ProConElement extends FormLayout{
+        Label name;
+        Label cost;
+        Button left;
+        Label type;
 
+        public ProConElement(ProCon proCon){
+            setResponsiveSteps(
+                new FormLayout.ResponsiveStep("0", 4)
+            );
+            name = new Label(proCon.nome());
+            left = new Button("-");
+            left.addClickListener(e -> {
+                character.removeProCon(proCon);
+                updateBloodWillPx();
+                updateSkills();
+            });
+            int c = proCon.costo();
+            type = new Label("pre");    
+            if(c < 0){
+                type = new Label("dif");
+                c = -c;
+            }
+            cost = new Label(Integer.toString(c));
+            add(left);
+            add(name);
+            add(type);
+            add(cost);
+        }
+    }
+    
     private Character character;
     private Select<String> gen;
     private NumberField px;
@@ -99,7 +129,10 @@ public class CharacterCreatorView extends VerticalLayout {
     private Label bloodWill;
     private VerticalLayout disc;
     private VerticalLayout infl;
-    
+    private VerticalLayout stili;
+    private VerticalLayout proCon;
+    private FormLayout formLayout;
+
     InputStream Filefactory(){
         ByteArrayInputStream bis = null;
         try {
@@ -110,10 +143,17 @@ public class CharacterCreatorView extends VerticalLayout {
         return bis;
     }
 
-    FormLayout formLayout = new FormLayout();
+    
     
     
     public CharacterCreatorView(){
+        formLayout = new FormLayout();
+        VerticalLayout ver = new VerticalLayout();
+        ver.setAlignItems(Alignment.CENTER);
+        H2 title = new H2("Lextalionis Character Creator");
+        ver.add(title);
+        add(ver);
+
         formLayout.setResponsiveSteps(
             // Use one column by default
             new FormLayout.ResponsiveStep("0", 1),
@@ -175,6 +215,9 @@ public class CharacterCreatorView extends VerticalLayout {
             character.setName(name.getValue());
             character.setSentiero(path.getValue());
             character.setPx(px.getValue().intValue());
+            if(character.toChoosInfl()){
+                chooseInfl(true);
+            }
             updateSkills();
             updateBloodWillPx();
         });
@@ -219,7 +262,46 @@ public class CharacterCreatorView extends VerticalLayout {
         discWrap.add(disc);
         Button addDisc = new Button("Aggiungi Disciplina");
         addDisc.addClickListener(e -> {
-
+            String[] discipline = {"Animalità", "Ascendente", "Auspex", "Chimerismo", "Daimonion", "Demenza",
+                        "Dominazione", "Necromanzia", "Ottenebramento", "Potenza", "Proteide",
+                        "Quietus", "Robustezza", "Sanguinis", "Serpentis", "Taumaturgia",
+                        "Valeren", "Velocità", "Vicissitudine"};
+            Dialog dialog = new Dialog();
+            dialog.add("Scegliere disciplina");
+            Select<String> select = new Select<String>();
+            select.setItems(discipline);
+            Button confirm = new Button("Conferma");
+            confirm.addClickListener(ev -> {
+                Disciplina d =null;
+                switch(select.getValue()){
+                    case "Animalità": d = new Disciplina.Animalità(); break;
+                    case "Ascendente": d = new Disciplina.Ascendente(); break;
+                    case "Auspex": d = new Disciplina.Auspex(); break;
+                    case "Chimerismo": d = new Disciplina.Chimerismo(); break;
+                    case "Daimonion": d = new Disciplina.Daimonion(); break;
+                    case "Demenza": d = new Disciplina.Demenza(); break;
+                    case "Dominazione": d = new Disciplina.Dominazione(); break;
+                    case "Necromanzia": d = new Disciplina.Necromanzia(); break;
+                    case "Ottenebramento": d = new Disciplina.Ottenebramento(); break;
+                    case "Potenza": d = new Disciplina.Potenza(); break;
+                    case "Proteide": d = new Disciplina.Proteide(); break;
+                    case "Quietus": d = new Disciplina.Quietus(); break;
+                    case "Robustezza": d = new Disciplina.Robustezza(); break;
+                    case "Sanguinis": d = new Disciplina.Sanguinis(); break;
+                    case "Serpentis": d = new Disciplina.Serpentis(); break;
+                    case "Taumaturgia": d = new Disciplina.Taumaturgia(); break;
+                    case "Valeren": d = new Disciplina.Valeren(); break;
+                    case "Velocità": d = new Disciplina.Velocità(); break;
+                    case "Vicissitudine": d = new Disciplina.Vicissitudine(); break;
+                }
+                d.setClan(false);
+                character.addDisciplina(d);
+                updateSkills();
+                dialog.close();
+            });
+            dialog.add(select);
+            dialog.add(confirm);
+            dialog.open();
         });
         discWrap.add(addDisc);
         skillLayout.add(discWrap);
@@ -230,10 +312,63 @@ public class CharacterCreatorView extends VerticalLayout {
         inflWrap.add(infl);
         Button addInfl = new Button("Aggiungi Influenza");
         addInfl.addClickListener(e -> {
-
+            chooseInfl(false);
         });
         inflWrap.add(addInfl);
         skillLayout.add(inflWrap);
+
+        VerticalLayout stilWrap = new VerticalLayout();
+        stilWrap.add(new Label("Stili"));
+        stili = new VerticalLayout();
+        stilWrap.add(stili);
+        Button addStili = new Button("Aggiungi Stile");
+        addStili.addClickListener(e -> {
+            String[] slist = {"Coltelli", "Duellista", "Armi da Lancio", "Desperado", "Stile Cinematografico"
+                        ,"Arti Marziali", "Combattimento Acrobatico", "Gioco Sporco", "Rissa da Strda"};
+            Dialog dialog = new Dialog();
+            dialog.add("Scegliere Stile");
+            Select<String> select = new Select<String>();
+            select.setItems(slist);
+            Button confirm = new Button("Conferma");
+            confirm.addClickListener(ev -> {
+                Style s = null;
+                switch(select.getValue()){
+                    case "Coltelli": s = new Style.Coltelli(); break;
+                    case "Duellista": s = new Style.Duellista(); break;
+                    case "Armi da Lancio": s = new Style.Lancio(); break;
+                    case "Desperado": s = new Style.Desperado(); break;
+                    case "Stile Cinematografico": s = new Style.Cinematografico(); break;
+                    case "Arti Marziali": s = new Style.Marziali(); break;
+                    case "Combattimento Acrobatico": s = new Style.Acrobatico(); break;
+                    case "Gioco Sporco": s = new Style.Sporco(); break;
+                    case "Rissa da Strda": s = new Style.Strada(); break;
+                }
+                character.addStile(s);
+                updateSkills();
+                dialog.close();
+            });
+            dialog.add(select);
+            dialog.add(confirm);
+            dialog.open();
+        });
+        stilWrap.add(addStili);
+        skillLayout.add(stilWrap);
+
+        VerticalLayout proConWrap = new VerticalLayout();
+        proConWrap.add(new Label("Pregi/Difetti"));
+        proCon = new VerticalLayout();
+        proConWrap.add(proCon);
+        Button addPro = new Button("Aggiungi Pregio");
+        addPro.addClickListener(e -> {
+            chooseProcon(true);
+        });
+        proConWrap.add(addPro);
+        Button addCon = new Button("Aggiungi Difetto");
+        addCon.addClickListener(e -> {
+            chooseProcon(false);
+        });
+        proConWrap.add(addCon);
+        skillLayout.add(proConWrap);
 
         updateSkills();
         add(skillLayout);
@@ -254,7 +389,59 @@ public class CharacterCreatorView extends VerticalLayout {
         
         
     }
+
+    private void chooseProcon(boolean pro){
+        String text = "Nome Difetto";
+        if(pro){
+            text = "Nome pregio";
+        }
+        Dialog dialog = new Dialog();
+        FormLayout formLayout = new FormLayout();
+        formLayout.setResponsiveSteps(new FormLayout.ResponsiveStep("0", 2));
+        TextField textField = new TextField(text);
+        formLayout.add(textField);
+        NumberField cost = new NumberField();
+        cost.setLabel("Costo");
+        cost.setMin(0.0);
+        cost.setMax(100.0);
+        cost.setStep(1.0);
+        cost.setHasControls(true);
+        formLayout.add(cost);
+        Button confirm = new Button("Conferma");
+        confirm.addClickListener(e -> {
+            int costo = cost.getValue().intValue();
+            if(!pro) costo = -costo;
+            ProCon p = new ProCon(textField.getValue(), costo);
+            character.addProCon(p);
+            updateBloodWillPx();
+            updateSkills();
+        });
+        formLayout.add(confirm, 2);
+        dialog.add(formLayout);
+        dialog.open();
+    }
     
+    private void chooseInfl(boolean clan){
+        String[] list = {"Accademiche", "Alta Società", "Clero", "Crimine", "Esercito",
+                        "Ghoul", "Medicina", "Media", "Mentore", "Occulto", "Politica",
+                        "Risorse", "Sicurezza", "Sopravvivenza"};
+        Dialog dialog = new Dialog();
+        dialog.add("Scegliere influenza");
+        Select<String> select = new Select<String>();
+        select.setItems(list);
+        Button confirm = new Button("Conferma");
+        confirm.addClickListener(ev -> {
+            Influenza i = new Influenza(select.getValue());
+            i.setClan(clan);
+            character.addInfluenza(i);
+            updateSkills();
+            dialog.close();
+        });
+        dialog.add(select);
+        dialog.add(confirm);
+        dialog.open();
+    }
+
     private void updateBloodWillPx(){
         pxrim.setText("PX: " + character.getRemainingPx());
         bloodWill.setText("Sangue: " + character.getBlood() + " Will: " + character.getWill());
@@ -271,6 +458,18 @@ public class CharacterCreatorView extends VerticalLayout {
         Iterator<Influenza> itInfl = character.inflIterator();
         while(itInfl.hasNext()){
             infl.add(new SkillElement(itInfl.next()));
+        }
+
+        stili.removeAll();
+        Iterator<Style> sIterator = character.sIterator();
+        while(sIterator.hasNext()){
+            stili.add(new SkillElement(sIterator.next()));
+        }
+
+        proCon.removeAll();
+        Iterator<ProCon> pIterator = character.pIterator();
+        while(pIterator.hasNext()){
+            proCon.add(new ProConElement(pIterator.next()));
         }
     }
 }
