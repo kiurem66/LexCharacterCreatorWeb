@@ -74,7 +74,7 @@ public class CharacterCreatorView extends VerticalLayout {
                 left = delete;
             }
             level  = new NumberField();
-            level.setValue(0.0);
+            level.setValue(((double)(skill.getLevel())));
             level.setMin(0.0);
             level.setStep(1.0);
             level.setHasControls(true);  
