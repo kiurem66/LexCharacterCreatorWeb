@@ -58,4 +58,6 @@ public interface Skill {
     public boolean isFirstLevelFree();
 
     public void setFirstLevelFree(boolean free);
+
+    public default boolean isClan(){return false;}
 }

@@ -58,6 +58,7 @@ public class Influenza implements Skill{
         this.firstFree = firstFree;
     }
 
+    @Override
     public boolean isClan() {
         return clan;
     }
