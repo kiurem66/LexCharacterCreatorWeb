@@ -1,0 +1,6 @@
+[{
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target" : { "namespace": "android_app", "package_name": "com.lextalionis_character_creator.twa",
+                     "sha256_cert_fingerprints": ["C2:77:32:5D:BF:D5:AF:A9:D9:8C:2A:E0:15:DB:30:F2:2B:ED:94:22:29:5B:E9:59:7C:6A:1C:92:53:69:CA:EA"] }
+      }
+]
