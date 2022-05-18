@@ -107,6 +107,11 @@ public abstract class Style implements Skill, Iterable<String>{
         public String getName() {
             return "Armi da lancio";
         }
+
+        @Override
+        public String getExcelName() {
+            return "ArmidaLancio";
+        }
     }
 
     public static class Desperado extends Style{
@@ -135,6 +140,11 @@ public abstract class Style implements Skill, Iterable<String>{
         public String getName() {
             return "Stile cinematografico";
         }
+
+        @Override
+        public String getExcelName() {
+            return "StileCinematografico";
+        }
     }
 
     public static class Marziali extends Style{
@@ -148,6 +158,11 @@ public abstract class Style implements Skill, Iterable<String>{
         @Override
         public String getName() {
             return "Arti Marziali";
+        }
+
+        @Override
+        public String getExcelName() {
+            return "ArtiMarziali";
         }
     }
 
@@ -163,6 +178,11 @@ public abstract class Style implements Skill, Iterable<String>{
         public String getName() {
             return "Combattimento Acrobatico";
         }
+
+        @Override
+        public String getExcelName() {
+            return "CombattimentoAcrobatico";
+        }
     }
 
     public static class Sporco extends Style{
@@ -176,6 +196,11 @@ public abstract class Style implements Skill, Iterable<String>{
         @Override
         public String getName() {
             return "Gioco Sporco";
+        }
+
+        @Override
+        public String getExcelName() {
+            return "GiocoSporco";
         }
     }
 
@@ -191,6 +216,11 @@ public abstract class Style implements Skill, Iterable<String>{
         public String getName() {
             return "Lucha Libre";
         }
+
+        @Override
+        public String getExcelName() {
+            return "LuchaLibre";
+        }
     }
 
     public static class Strada extends Style{
@@ -204,6 +234,11 @@ public abstract class Style implements Skill, Iterable<String>{
         @Override
         public String getName() {
             return "Rissa da Strada";
+        }
+
+        @Override
+        public String getExcelName() {
+            return "RissadaStrada";
         }
     }
 

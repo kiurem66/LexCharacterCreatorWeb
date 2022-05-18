@@ -257,6 +257,11 @@ public abstract class Disciplina implements Skill, Iterable<Disciplina.Power>{
             addPotere(new Power("Ex Nihilo", 4));
             addPotere(new Power("Maestria del Sudario", 5));
         }
+
+        @Override
+        public String getExcelName() {
+            return "Necromanzia:ViaOccidentale";
+        }
     }
 
     public static class Oscurazione extends Disciplina{
@@ -402,6 +407,11 @@ public abstract class Disciplina implements Skill, Iterable<Disciplina.Power>{
             addPotere(new Power("Frusta di Sangue", 3));
             addPotere(new Power("Furto di Vitae", 4));
             addPotere(new Power("Calderone di Sangue", 5));
+        }
+
+        @Override
+        public String getExcelName() {
+            return "Taumaturgia:ViadelSangue";
         }
     }
 

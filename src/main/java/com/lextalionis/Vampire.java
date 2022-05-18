@@ -24,8 +24,8 @@ public abstract class Vampire extends Character{
             case 15: pxSpesi-=8; break;
             case 14: pxSpesi-=4; break;
             case 12: pxSpesi+=10; break;
-            case 11: pxSpesi+=20; break;
-            case 10: pxSpesi+=30; break;
+            case 11: pxSpesi+=25; break;
+            case 10: pxSpesi+=40; break;
         }
         return super.getRemainingPx() - pxSpesi;
     }

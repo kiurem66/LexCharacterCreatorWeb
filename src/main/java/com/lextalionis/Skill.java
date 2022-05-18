@@ -60,4 +60,6 @@ public interface Skill {
     public void setFirstLevelFree(boolean free);
 
     public default boolean isClan(){return false;}
+
+    public default String getExcelName(){return getName();}
 }
