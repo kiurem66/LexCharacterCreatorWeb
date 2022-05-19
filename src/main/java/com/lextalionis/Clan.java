@@ -1,5 +1,7 @@
 package com.lextalionis;
 
+import java.util.Iterator;
+
 public final class Clan {
 
     private Clan(){};

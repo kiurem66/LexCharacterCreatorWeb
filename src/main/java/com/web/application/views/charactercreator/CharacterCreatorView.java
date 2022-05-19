@@ -6,10 +6,8 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
-import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.login.LoginOverlay;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.NumberField;
@@ -134,6 +132,7 @@ public class CharacterCreatorView extends VerticalLayout {
     private VerticalLayout stili;
     private VerticalLayout proCon;
     private FormLayout formLayout;
+    private ProConSelector pSelector;
 
     InputStream Filefactory(){
         ByteArrayInputStream bis = null;
@@ -190,6 +189,8 @@ public class CharacterCreatorView extends VerticalLayout {
             list.add(it.next());
         }
 
+
+        pSelector = new ProConSelector(character);
         Select<String> clan = new Select<String>();
         clan.setLabel("Clan");
         clan.setItems(list);
@@ -220,12 +221,13 @@ public class CharacterCreatorView extends VerticalLayout {
             if(character.toChoosInfl()){
                 chooseInfl(true);
             }
+            pSelector = new ProConSelector(character);
             updateSkills();
             updateBloodWillPx();
         });
         formLayout.add(clan);
 
-        List<String> g = Arrays.asList("10", "11", "12", "13", "14", "15");
+        List<String> g = Arrays.asList("11", "12", "13", "14", "15");
         gen = new Select<String>();
         gen.setLabel("Generazione");
         gen.setItems(g);
@@ -395,34 +397,34 @@ public class CharacterCreatorView extends VerticalLayout {
     }
 
     private void chooseProcon(boolean pro){
-        String text = "Nome Difetto";
+        String text = "Scegli difetto";
         if(pro){
-            text = "Nome pregio";
+            text = "Scegli pregio";
         }
         Dialog dialog = new Dialog();
-        FormLayout formLayout = new FormLayout();
-        formLayout.setResponsiveSteps(new FormLayout.ResponsiveStep("0", 2));
-        TextField textField = new TextField(text);
-        formLayout.add(textField);
-        NumberField cost = new NumberField();
-        cost.setLabel("Costo");
-        cost.setMin(0.0);
-        cost.setMax(100.0);
-        cost.setStep(1.0);
-        cost.setHasControls(true);
-        formLayout.add(cost);
+        ArrayList<ProCon> slist = new ArrayList<ProCon>(); 
+        Iterator<ProCon> it = null;
+        if(pro){
+            it = pSelector.proIterator();
+        }else{
+            it = pSelector.conIterator();
+        }
+        while(it.hasNext()){
+            slist.add(it.next());
+        }
+        dialog.add(new Label(text));
+        Select<ProCon> select = new Select<ProCon>();
+        select.setItems(slist);
+        select.setItemLabelGenerator(ProCon::nome);
+        dialog.add(select);
         Button confirm = new Button("Conferma");
         confirm.addClickListener(e -> {
-            int costo = cost.getValue().intValue();
-            if(!pro) costo = -costo;
-            ProCon p = new ProCon(textField.getValue(), costo);
-            character.addProCon(p);
+            character.addProCon(select.getValue());
             updateBloodWillPx();
             updateSkills();
             dialog.close();
         });
-        formLayout.add(confirm, 2);
-        dialog.add(formLayout);
+        dialog.add(confirm);
         dialog.open();
     }
     

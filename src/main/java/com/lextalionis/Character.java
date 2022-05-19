@@ -179,6 +179,12 @@ public abstract class Character{
     public boolean isVampire(){return false;}
 
     public int getBlood(){
+        int c = 0;
+        for(ProCon p : setProCon){
+            if(p.nome().equals("Taglia enorme")){
+                c+=2;
+            }
+        }
         int robu = 0;
         if(isInDisc("Robustezza")){
             switch(searchDisc("Robustezza").getLevel()){
@@ -195,7 +201,7 @@ public abstract class Character{
             vici = searchDisc("Vicissitudine").getLevel()*2;
             if(vici == 2) vici = 0;
         }
-        return robu+vici;
+        return robu+vici+c;
     }
 
     public void removeDisc(Disciplina d){
@@ -217,8 +223,8 @@ public abstract class Character{
     public int getWill(){
         int c = 0;
         for(ProCon p : setProCon){
-            if(p.nome().equals("TODO")){
-                c+=2;
+            if(p.nome().startsWith("Fiducia in sé stessi")){
+                c+=1;
             }
         }
         return c;
