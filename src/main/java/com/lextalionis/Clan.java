@@ -1,6 +1,6 @@
 package com.lextalionis;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 
 public final class Clan {
 
@@ -21,6 +21,23 @@ public final class Clan {
         public String getClan() {
             return "Assamita";
         }
+
+        @Override
+        protected ArrayList<ProCon> getClanPro() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("Club dei Mille Metri", 3));
+            list.add(new ProCon("Natural Born Killer", 6));
+            list.add(new ProCon("Mentore edotto", 10));
+            return list;
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanCon() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("Gusto Magico", -3));
+            list.add(new ProCon("Soggiogato", -5));
+            return list;
+        }
     }
 
     public static class Baali extends Vampire{
@@ -37,6 +54,18 @@ public final class Clan {
         @Override
         public String getClan() {
             return "Baali";
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanPro() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            return list;
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanCon() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            return list;
         }
     }
 
@@ -55,6 +84,24 @@ public final class Clan {
         public String getClan() {
             return "Brujah AT";
         }
+
+        @Override
+        protected ArrayList<ProCon> getClanPro() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("Sguardo dell'ira primordiale", 3));
+            list.add(new ProCon("Forza della parola", 4));
+            list.add(new ProCon("Terapia d'urto", 5));
+            return list;
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanCon() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("Sangue bollente", -3));
+            list.add(new ProCon("Blackout totale",-4));
+            list.add(new ProCon("Lupo tra le pecore", -4));
+            return list;
+        }
     }
 
     public static class CountryGangrel extends Vampire{
@@ -72,6 +119,26 @@ public final class Clan {
         public String getClan() {
             return "Gangrel \'di Campagna\'";
         }
+
+        @Override
+        protected ArrayList<ProCon> getClanPro() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("Dono di Proteo", 2));
+            list.add(new ProCon("Odore ferale", 2));
+            list.add(new ProCon("Erede delle Ahrimane", 3));
+            list.add(new ProCon("Irrintracciabile", 3));
+            list.add(new ProCon("Tattiche di branco", 6));
+            return list;
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanCon() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("Nomadismo incontrollabile", -3));
+            list.add(new ProCon("Aerofobico", -4));
+            list.add(new ProCon("Orrore metamorfico", -4));
+            return list;
+        }
     }
 
     public static class CityGangrel extends Vampire{
@@ -88,6 +155,22 @@ public final class Clan {
         @Override
         public String getClan() {
             return "Gangrel \'di Città\'";
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanPro() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("Stalker", 3));
+            list.add(new ProCon("Solitaire", 4));
+            return list;
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanCon() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("Nido di vespe", -3));
+            list.add(new ProCon("Nstura avversa", -3));
+            return list;
         }
     }
 
@@ -120,6 +203,21 @@ public final class Clan {
         public String getClan() {
             return "Gemelli di Sangue";
         }
+
+        @Override
+        protected ArrayList<ProCon> getClanPro() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("Ricetta Alternativa", 4));
+            return list;
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanCon() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("Catena di comando 1", -3));
+            list.add(new ProCon("Catena di comando 2", -6));
+            return list;
+        }
     }
 
     public static class Giovanni extends Vampire{
@@ -136,6 +234,26 @@ public final class Clan {
         @Override
         public String getClan() {
             return "Giovanni";
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanPro() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("Incongruenza del sangue", 2));
+            list.add(new ProCon("Bacio dell'approssimarsi", 3));
+            list.add(new ProCon("Famiglia minore", 4));
+            list.add(new ProCon("Pedigree", 7));
+            return list;
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanCon() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("Naive", -3));
+            list.add(new ProCon("Legami familiari", -4));
+            list.add(new ProCon("Estraneo in casa", -5));
+            list.add(new ProCon("Valentiniano", -5));
+            return list;
         }
     }
 
@@ -154,6 +272,24 @@ public final class Clan {
         public String getClan() {
             return "Lasombra";
         }
+
+        @Override
+        protected ArrayList<ProCon> getClanPro() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("Seguace dell'Abisso", 5));
+            list.add(new ProCon("Nemico favorito", 5));
+            return list;
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanCon() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("Richiamo di Poseidone", -2));
+            list.add(new ProCon("Ira di Vanesio", -2));
+            list.add(new ProCon("Ombra indipendente", -3));
+            list.add(new ProCon("Paura delle ombre", -3));
+            return list;
+        }
     }
 
     public static class Malkavian extends Vampire{
@@ -171,6 +307,23 @@ public final class Clan {
         public String getClan() {
             return "Malkavian AT";
         }
+
+        @Override
+        protected ArrayList<ProCon> getClanPro() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("Mentore etereo", 6));
+            return list;
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanCon() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("Terapia d'urto", -3));
+            list.add(new ProCon("Stigmate di sangue", -3));
+            list.add(new ProCon("Follia contagiosa", -3));
+            list.add(new ProCon("Occhio del ciclone", -5));
+            return list;
+        }
     }
 
     public static class Nosferatu extends Vampire{
@@ -187,6 +340,20 @@ public final class Clan {
         @Override
         public String getClan() {
             return "Nosferatu AT";
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanPro() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("", 1));
+            return list;
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanCon() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("", -1));
+            return list;
         }
     }
 
@@ -213,6 +380,20 @@ public final class Clan {
         public String getClan() {
             return "Pander";
         }
+
+        @Override
+        protected ArrayList<ProCon> getClanPro() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("", 1));
+            return list;
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanCon() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("", -1));
+            return list;
+        }
     }
 
     public static class Ravnos extends Vampire{
@@ -231,6 +412,20 @@ public final class Clan {
         public String getClan() {
             return "Ravnos AT";
         }
+
+        @Override
+        protected ArrayList<ProCon> getClanPro() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("", 1));
+            return list;
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanCon() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("", -1));
+            return list;
+        }
     }
 
     public static class Salubre extends Vampire{
@@ -247,6 +442,20 @@ public final class Clan {
         @Override
         public String getClan() {
             return "Salubre AT";
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanPro() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("", 1));
+            return list;
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanCon() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("", -1));
+            return list;
         }
     }
 
@@ -265,6 +474,20 @@ public final class Clan {
         public String getClan() {
             return "Seguace del Set";
         }
+
+        @Override
+        protected ArrayList<ProCon> getClanPro() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("", 1));
+            return list;
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanCon() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("", -1));
+            return list;
+        }
     }
 
     public static class LightSerpent extends Vampire{
@@ -281,6 +504,20 @@ public final class Clan {
         @Override
         public String getClan() {
             return "Serpente della Luce";
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanPro() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("", 1));
+            return list;
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanCon() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("", -1));
+            return list;
         }
     }
 
@@ -299,6 +536,20 @@ public final class Clan {
         public String getClan() {
             return "Toreador AT";
         }
+
+        @Override
+        protected ArrayList<ProCon> getClanPro() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("", 1));
+            return list;
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanCon() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("", -1));
+            return list;
+        }
     }
 
     public static class Tremere extends Vampire{
@@ -315,6 +566,20 @@ public final class Clan {
         @Override
         public String getClan() {
             return "Tremere AT";
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanPro() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("", 1));
+            return list;
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanCon() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("", -1));
+            return list;
         }
     }
 
@@ -333,6 +598,20 @@ public final class Clan {
         public String getClan() {
             return "Tzimisce";
         }
+
+        @Override
+        protected ArrayList<ProCon> getClanPro() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("", 1));
+            return list;
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanCon() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("", -1));
+            return list;
+        }
     }
 
     public static class Ventrue extends Vampire{
@@ -349,6 +628,20 @@ public final class Clan {
         @Override
         public String getClan() {
             return "Ventrue AT";
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanPro() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("", 1));
+            return list;
+        }
+
+        @Override
+        protected ArrayList<ProCon> getClanCon() {
+            ArrayList<ProCon> list = new ArrayList<ProCon>();
+            list.add(new ProCon("", -1));
+            return list;
         }
     }
 

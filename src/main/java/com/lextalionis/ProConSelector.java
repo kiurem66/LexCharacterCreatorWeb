@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ProConSelector {
-    private ArrayList<ProCon> proList;
-    private ArrayList<ProCon> conList;
+    private Character character;
 
     private static class CommonProCons{
         private ArrayList<ProCon> proList;
@@ -138,8 +137,7 @@ public class ProConSelector {
     }
 
     public ProConSelector(Character c){
-        proList = new ArrayList<ProCon>();
-        conList = new ArrayList<ProCon>();
+        this.character = c;
     }
 
 
@@ -148,19 +146,20 @@ public class ProConSelector {
         return new Iterator<ProCon>() {
             int i=0;
             int cnum = CommonProCons.getPros().size();
+            Iterator<ProCon> proIt = character.clanProIterator();
 
             @Override
             public boolean hasNext() {
                 if(i < cnum){
                     return true;
                 }
-                return (i-cnum) < proList.size(); 
+                return proIt.hasNext();
             }
 
             @Override
             public ProCon next() {
                 if(i< cnum) return CommonProCons.getPros().get(i++);
-                return proList.get(i-cnum);
+                return proIt.next();
             }
             
         };
@@ -170,19 +169,21 @@ public class ProConSelector {
         return new Iterator<ProCon>() {
             int i=0;
             int cnum = CommonProCons.getCons().size();
+            Iterator<ProCon> conIt = character.clanConIterator();
+            
 
             @Override
             public boolean hasNext() {
                 if(i < cnum){
                     return true;
                 }
-                return (i-cnum) < conList.size(); 
+                return conIt.hasNext();
             }
 
             @Override
             public ProCon next() {
-                if(i< cnum) return CommonProCons.getCons().get(i++);
-                return conList.get(i-cnum);
+                if(i < cnum) return CommonProCons.getCons().get(i++);
+                return conIt.next();
             }
             
         };

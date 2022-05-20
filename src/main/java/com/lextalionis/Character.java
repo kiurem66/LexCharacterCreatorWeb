@@ -233,4 +233,16 @@ public abstract class Character{
     public abstract boolean toChoosInfl();
 
     public abstract String getClan();
+
+    protected abstract ArrayList<ProCon> getClanPro();
+    protected abstract ArrayList<ProCon> getClanCon();
+
+    public Iterator<ProCon> clanProIterator(){
+        return getClanPro().iterator();
+    }
+    
+    public Iterator<ProCon> clanConIterator(){
+        return getClanCon().iterator();
+    }
+
 }
