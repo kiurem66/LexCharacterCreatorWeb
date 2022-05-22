@@ -345,14 +345,22 @@ public final class Clan {
         @Override
         protected ArrayList<ProCon> getClanPro() {
             ArrayList<ProCon> list = new ArrayList<ProCon>();
-            list.add(new ProCon("", 1));
+            list.add(new ProCon("Oblio del sonno", 3));
+            list.add(new ProCon("Pelle viscida", 3));
+            list.add(new ProCon("Segreto 1", 3));
+            list.add(new ProCon("Segreto 2", 7));
+            list.add(new ProCon("Segreto 3", 15));
+            list.add(new ProCon("Tattica della seppia", 5));
             return list;
         }
 
         @Override
         protected ArrayList<ProCon> getClanCon() {
             ArrayList<ProCon> list = new ArrayList<ProCon>();
-            list.add(new ProCon("", -1));
+            list.add(new ProCon("Anosmia", -3));
+            list.add(new ProCon("Nidiata rivale", -5));
+            list.add(new ProCon("Leatherface", -6));
+            list.add(new ProCon("Ultimo superstite", -6));
             return list;
         }
     }
@@ -384,20 +392,27 @@ public final class Clan {
         @Override
         protected ArrayList<ProCon> getClanPro() {
             ArrayList<ProCon> list = new ArrayList<ProCon>();
-            list.add(new ProCon("", 1));
+            list.add(new ProCon("Boogeyman", 3));
+            list.add(new ProCon("Capitano del popolo", 5));
+            list.add(new ProCon("Delirium", 3));
+            list.add(new ProCon("Generazione V", 10));
             return list;
         }
 
         @Override
         protected ArrayList<ProCon> getClanCon() {
             ArrayList<ProCon> list = new ArrayList<ProCon>();
-            list.add(new ProCon("", -1));
+            list.add(new ProCon("Ignorante", -1));
+            list.add(new ProCon("Debolezza di Clan", -3));
+            list.add(new ProCon("Invecchiato", -4));
+            list.add(new ProCon("Anatema del Legno", -8));
             return list;
         }
     }
 
     public static class Ravnos extends Vampire{
-        //Chi cazzo ha mai giocato un Ravnos?
+        //Chi cazzo ha mai giocato un Ravnos? 
+        //Ah ok ne ho visto uno giocato
         public Ravnos(){
             super();
             addDisciplina(new Disciplina.Animalità());
@@ -416,14 +431,17 @@ public final class Clan {
         @Override
         protected ArrayList<ProCon> getClanPro() {
             ArrayList<ProCon> list = new ArrayList<ProCon>();
-            list.add(new ProCon("", 1));
+            list.add(new ProCon("Fachiro", 4));
+            list.add(new ProCon("Battesimo del fuoco", 4));
+            list.add(new ProCon("Destino di Loki", 6));
             return list;
         }
 
         @Override
         protected ArrayList<ProCon> getClanCon() {
             ArrayList<ProCon> list = new ArrayList<ProCon>();
-            list.add(new ProCon("", -1));
+            list.add(new ProCon("Realtà menomata", -4));
+            list.add(new ProCon("Paria", -6));
             return list;
         }
     }
@@ -447,14 +465,17 @@ public final class Clan {
         @Override
         protected ArrayList<ProCon> getClanPro() {
             ArrayList<ProCon> list = new ArrayList<ProCon>();
-            list.add(new ProCon("", 1));
+            list.add(new ProCon("Seconda Vista", 5));
+            list.add(new ProCon("Battezzato secondo il Codice", 5));
+            list.add(new ProCon("Testamento di Abele", 6));
             return list;
         }
 
         @Override
         protected ArrayList<ProCon> getClanCon() {
             ArrayList<ProCon> list = new ArrayList<ProCon>();
-            list.add(new ProCon("", -1));
+            list.add(new ProCon("Malocchio", -2));
+            list.add(new ProCon("Flagello dei Demoni", -4));
             return list;
         }
     }
@@ -478,14 +499,19 @@ public final class Clan {
         @Override
         protected ArrayList<ProCon> getClanPro() {
             ArrayList<ProCon> list = new ArrayList<ProCon>();
-            list.add(new ProCon("", 1));
+            list.add(new ProCon("Capelli rossi", 2));
+            list.add(new ProCon("Sangue dolce", 3));
+            list.add(new ProCon("Vecchia scuola", 4));
+            list.add(new ProCon("Corte di Wepwavet", 8));
+            list.add(new ProCon("Cuore rimosso", 10));
             return list;
         }
 
         @Override
         protected ArrayList<ProCon> getClanCon() {
             ArrayList<ProCon> list = new ArrayList<ProCon>();
-            list.add(new ProCon("", -1));
+            list.add(new ProCon("Occhi del Serpente", -2));
+            list.add(new ProCon("Lingua biforcuta", -2));
             return list;
         }
     }
@@ -509,14 +535,17 @@ public final class Clan {
         @Override
         protected ArrayList<ProCon> getClanPro() {
             ArrayList<ProCon> list = new ArrayList<ProCon>();
-            list.add(new ProCon("", 1));
+            list.add(new ProCon("Favore dei Loa", 10));
             return list;
         }
 
         @Override
         protected ArrayList<ProCon> getClanCon() {
             ArrayList<ProCon> list = new ArrayList<ProCon>();
-            list.add(new ProCon("", -1));
+            list.add(new ProCon("Occhi del Serpente", -2));
+            list.add(new ProCon("Lingua biforcuta", -2));
+            list.add(new ProCon("Tabù", -4));
+            list.add(new ProCon("Debitore", -5));
             return list;
         }
     }
@@ -540,14 +569,18 @@ public final class Clan {
         @Override
         protected ArrayList<ProCon> getClanPro() {
             ArrayList<ProCon> list = new ArrayList<ProCon>();
-            list.add(new ProCon("", 1));
+            list.add(new ProCon("Colori segreti", 3));
+            list.add(new ProCon("Stirpe di Volgirre", 5));
+            list.add(new ProCon("Avant-garde", 6));
             return list;
         }
 
         @Override
         protected ArrayList<ProCon> getClanCon() {
             ArrayList<ProCon> list = new ArrayList<ProCon>();
-            list.add(new ProCon("", -1));
+            list.add(new ProCon("Dadaista", -3));
+            list.add(new ProCon("Perversione estrema", -5));
+            list.add(new ProCon("Addicted to the knife", -4));
             return list;
         }
     }
@@ -571,14 +604,18 @@ public final class Clan {
         @Override
         protected ArrayList<ProCon> getClanPro() {
             ArrayList<ProCon> list = new ArrayList<ProCon>();
-            list.add(new ProCon("", 1));
+            list.add(new ProCon("Telyavelico", 4));
+            list.add(new ProCon("Topo di biblioteca", 6));
+            list.add(new ProCon("Predatore di magia", 10));
             return list;
         }
 
         @Override
         protected ArrayList<ProCon> getClanCon() {
             ArrayList<ProCon> list = new ArrayList<ProCon>();
-            list.add(new ProCon("", -1));
+            list.add(new ProCon("Erede di Sangue", -4));
+            list.add(new ProCon("Oggettivista", -5));
+            list.add(new ProCon("Paradosso vivente", -8));
             return list;
         }
     }
@@ -602,14 +639,20 @@ public final class Clan {
         @Override
         protected ArrayList<ProCon> getClanPro() {
             ArrayList<ProCon> list = new ArrayList<ProCon>();
-            list.add(new ProCon("", 1));
+            list.add(new ProCon("Argilla primordiale", 4));
+            list.add(new ProCon("Resistenza al dolore", 4));
+            list.add(new ProCon("Figlio del dragone", 6));
+            list.add(new ProCon("Allevare il Mastino Infernale", 1));
+            list.add(new ProCon("Plasmare lo Szlachta", 3));
+            list.add(new ProCon("Ricetta del Vozhd Minore", 6));
             return list;
         }
 
         @Override
         protected ArrayList<ProCon> getClanCon() {
             ArrayList<ProCon> list = new ArrayList<ProCon>();
-            list.add(new ProCon("", -1));
+            list.add(new ProCon("Ossessione territoriale", -3));
+            list.add(new ProCon("Malattia cronica", -5));
             return list;
         }
     }
@@ -633,14 +676,18 @@ public final class Clan {
         @Override
         protected ArrayList<ProCon> getClanPro() {
             ArrayList<ProCon> list = new ArrayList<ProCon>();
-            list.add(new ProCon("", 1));
+            list.add(new ProCon("Gioco da ragazzi", 3));
+            list.add(new ProCon("Fang Real", 3));
+            list.add(new ProCon("Portamento Regale", 5));
             return list;
         }
 
         @Override
         protected ArrayList<ProCon> getClanCon() {
             ArrayList<ProCon> list = new ArrayList<ProCon>();
-            list.add(new ProCon("", -1));
+            list.add(new ProCon("Piatto Preferito", -4));
+            list.add(new ProCon("Voto infranto", -4));
+            list.add(new ProCon("Ultima Cena", -6));
             return list;
         }
     }
