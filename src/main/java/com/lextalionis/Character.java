@@ -1,5 +1,6 @@
 package com.lextalionis;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -11,11 +12,12 @@ import java.util.NoSuchElementException;
  * 
  * Rappresenta la scheda di un personaggio di LexTallionis
  */
-public abstract class Character{    
+public abstract class Character implements Serializable{    
     private String name;
     private int px;
     private String sentiero;
     private String fazione;
+    private String description;
 
     protected HashSet<Disciplina> setDiscipline = new HashSet<Disciplina>();
     protected HashSet<Influenza> setInfluenze = new HashSet<Influenza>();
@@ -27,6 +29,7 @@ public abstract class Character{
         px  = 30;
         sentiero = "";
         fazione = "";
+        description = "";
     }
 
     public Character(Character character){
@@ -35,6 +38,7 @@ public abstract class Character{
         this.sentiero = character.sentiero;
         this.fazione = character.fazione;
         this.setStili = character.setStili;
+        this.description = character.description;
     }
 
     public int getPx() {
@@ -243,6 +247,14 @@ public abstract class Character{
     
     public Iterator<ProCon> clanConIterator(){
         return getClanCon().iterator();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 }

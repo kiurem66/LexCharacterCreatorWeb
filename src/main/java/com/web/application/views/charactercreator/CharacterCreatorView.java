@@ -11,6 +11,7 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.NumberField;
+import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -32,6 +33,7 @@ import com.lextalionis.*;
 
 
 @PageTitle("LexCharacterCreator")
+//@Route(value = "/editor")
 @Route(value = "")
 public class CharacterCreatorView extends VerticalLayout {
 
@@ -133,6 +135,7 @@ public class CharacterCreatorView extends VerticalLayout {
     private VerticalLayout proCon;
     private FormLayout formLayout;
     private ProConSelector pSelector;
+    private TextArea descrizione;
 
     InputStream Filefactory(){
         ByteArrayInputStream bis = null;
@@ -162,10 +165,16 @@ public class CharacterCreatorView extends VerticalLayout {
             new FormLayout.ResponsiveStep("500px", 3)
         );
         add(formLayout);
-
-        character = new Clan.Assamita();
+        
+        if(VaadinSession.getCurrent().getAttribute("character") == null){
+            character = new Clan.Assamita();
+        }else{
+            character = (Character) VaadinSession.getCurrent().getAttribute("character");
+        }
+        
         
         TextField name = new TextField("Nome");
+        name.setValue(character.getName());
         name.addValueChangeListener(e -> {
             character.setName(name.getValue());
         });
@@ -175,12 +184,14 @@ public class CharacterCreatorView extends VerticalLayout {
         path.addValueChangeListener(e -> {
             character.setSentiero(path.getValue());
         });
+        path.setValue(character.getSentiero());
         formLayout.add(path);
 
         TextField faz = new TextField("Fazione");
         faz.addValueChangeListener(e -> {
             character.setFazione(faz.getValue());
         });
+        faz.setValue(character.getFazione());
         formLayout.add(faz);
 
         ArrayList<String> list = new ArrayList<String>();
@@ -194,7 +205,7 @@ public class CharacterCreatorView extends VerticalLayout {
         Select<String> clan = new Select<String>();
         clan.setLabel("Clan");
         clan.setItems(list);
-        clan.setValue("Assamita");
+        clan.setValue(character.getClan());
         clan.addValueChangeListener(e -> {
             //salvataggio dati da tenere
             int genNum = 0;
@@ -222,6 +233,7 @@ public class CharacterCreatorView extends VerticalLayout {
                 chooseInfl(true);
             }
             pSelector = new ProConSelector(character);
+            character.setDescription(descrizione.getValue());
             updateSkills();
             updateBloodWillPx();
         });
@@ -231,7 +243,11 @@ public class CharacterCreatorView extends VerticalLayout {
         gen = new Select<String>();
         gen.setLabel("Generazione");
         gen.setItems(g);
-        gen.setValue("13");
+        if(character.isVampire()){
+            gen.setValue(Integer.toString(((Vampire)character).getGen()));
+        }else{
+            gen.setValue("13");
+        }
 
         gen.addValueChangeListener(e -> {
             if(character.isVampire()){
@@ -242,7 +258,7 @@ public class CharacterCreatorView extends VerticalLayout {
         formLayout.add(gen);
 
         px = new NumberField("PX");
-        px.setValue(30.0);
+        px.setValue((double)character.getPx());
         px.setStep(1.0);
         px.setHasControls(true);
         px.setMin(1);
@@ -377,9 +393,21 @@ public class CharacterCreatorView extends VerticalLayout {
 
         updateSkills();
         add(skillLayout);
+        
+        FormLayout descrDiv = new FormLayout(); 
+        descrizione = new TextArea("Descrizione");
+        descrizione.setValue(character.getDescription());
+        descrizione.addValueChangeListener(e -> {
+            character.setDescription(descrizione.getValue());
+        });
+        descrizione.setMaxLength(500);
+        descrDiv.add(descrizione);
+        descrDiv.setResponsiveSteps(new FormLayout.ResponsiveStep("0", 1));
+        add(descrDiv);
 
         pxrim = new Label("PX: 30");
         bloodWill = new Label("Sangue: 10 Will: 7");
+        updateBloodWillPx();
         add(pxrim);
         add(bloodWill);
 

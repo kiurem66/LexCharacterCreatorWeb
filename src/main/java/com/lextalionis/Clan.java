@@ -19,7 +19,7 @@ public final class Clan {
 
         @Override
         public String getClan() {
-            return "Assamita";
+            return "Assamita AT";
         }
 
         @Override

@@ -1,6 +1,8 @@
 package com.lextalionis;
 
-public class ProCon{
+import java.io.Serializable;
+
+public class ProCon implements Serializable{
     private String nome;
     private int costo;
     private boolean clan;

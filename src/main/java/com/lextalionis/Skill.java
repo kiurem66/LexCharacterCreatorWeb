@@ -1,5 +1,7 @@
 package com.lextalionis;
 
+import java.io.Serializable;
+
 /**
  * @author kyuRAM
  * 
@@ -8,7 +10,7 @@ package com.lextalionis;
  * Le skill possono essere: discipline, influenze, stili di combattimento etc..
  */
 
-public interface Skill {
+public interface Skill extends Serializable{
     /**
      * Restituisce il nome della skill
      * @return il nome della skill
