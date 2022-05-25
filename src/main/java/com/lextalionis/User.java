@@ -7,13 +7,12 @@ import java.util.Iterator;
 public class User implements Serializable, Iterable<Character>{
     private String username;
     private String hashedPassword;
-    private ArrayList<Character> characters;
-    private Character currentCharacter;
+    private ArrayList<Character> charList;
 
     public User(String username, String hashedPassword){
         this.username = username;
         this.hashedPassword = hashedPassword;
-        this.characters = new ArrayList<Character>();
+        charList = new ArrayList<Character>();
     }
 
     public String getUsername() {
@@ -32,32 +31,19 @@ public class User implements Serializable, Iterable<Character>{
         this.hashedPassword = hashedPassword;
     }
 
-    public void addCharacter(Character character){
-        if(characters.isEmpty()){
-            currentCharacter = character;
-        }
-        characters.add(character);
-    }
-
-    public void removeCharacter(Character character){
-        characters.remove(character);
-        if(characters.isEmpty()){
-            currentCharacter = null;
-        }
-    }
-
-    public Character getCurrentCharacter() {
-        return currentCharacter;
-    }
-
-    public void setCurrentCharacter(Character currentCharacter) {
-        this.currentCharacter = currentCharacter;
-    }
-
     @Override
     public Iterator<Character> iterator() {
-        return characters.iterator();
+        return charList.iterator();
     }
+
+    public void addChara(Character character){
+        charList.add(character);
+    }
+
+    public void delChara(Character character){
+        charList.remove(character);
+    }
+
 
     
 }

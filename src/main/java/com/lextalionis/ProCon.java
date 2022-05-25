@@ -2,7 +2,7 @@ package com.lextalionis;
 
 import java.io.Serializable;
 
-public class ProCon implements Serializable{
+public class ProCon implements Serializable, Cloneable{
     private String nome;
     private int costo;
     private boolean clan;
@@ -37,5 +37,10 @@ public class ProCon implements Serializable{
 
     public int costo() {
         return costo;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

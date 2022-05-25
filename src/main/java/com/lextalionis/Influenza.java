@@ -4,7 +4,7 @@ package com.lextalionis;
  * Tipo mutabile che implementa Skill
  * Rappresenta un'influenza di un personaggio
  */
-public class Influenza implements Skill{
+public class Influenza implements Skill, Cloneable{
     private String name;
     private int level;
     private boolean firstFree;
@@ -76,5 +76,10 @@ public class Influenza implements Skill{
             if(!clan) cost++;
         }
         return cost;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

@@ -2,7 +2,7 @@ package com.lextalionis;
 
 import java.util.Iterator;
 
-public abstract class Style implements Skill, Iterable<String>{
+public abstract class Style implements Skill, Iterable<String>, Cloneable{
     private int level;
     private String nomi[] = new String[3];
 
@@ -66,6 +66,11 @@ public abstract class Style implements Skill, Iterable<String>{
 
     public void setName(String n, int i){
         nomi[i] = n;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
     
     public static class Coltelli extends Style{

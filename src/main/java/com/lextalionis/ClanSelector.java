@@ -37,25 +37,25 @@ public class ClanSelector {
 
     public static String get(int i){
         switch(i){
-            case 0: return "Assamita";
+            case 0: return "Assamita AT";
             case 1: return "Baali";
-            case 2: return "Brujah";
-            case 3: return "Gangrel di Campagna";
-            case 4: return "Gangrel di Città";
+            case 2: return "Brujah AT";
+            case 3: return "Gangrel \'di Campagna\'";
+            case 4: return "Gangrel \'di Città\'";
             case 5: return "Gemelli di Sangue";
             case 6: return "Giovanni";
             case 7: return "Lasombra";
-            case 8: return "Malkavian";
-            case 9: return "Nosferatu";
+            case 8: return "Malkavian AT";
+            case 9: return "Nosferatu AT";
             case 10: return "Pander";
-            case 11: return "Ravnos";
-            case 12: return "Salubre";
+            case 11: return "Ravnos AT";
+            case 12: return "Salubre AT";
             case 13: return "Seguace del Set";
             case 14: return "Serpente della Luce";
-            case 15: return "Toreador";
-            case 16: return "Tremere";
+            case 15: return "Toreador AT";
+            case 16: return "Tremere AT";
             case 17: return "Tzimisce";
-            case 18: return "Ventrue";
+            case 18: return "Ventrue ATS";
             case 19: return "Bratovich";
             case 20: return "Grimaldi";
             case 21: return "Obertus";

@@ -3,11 +3,13 @@ package com.web.application.views.charactercreator;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.NumberField;
@@ -33,8 +35,7 @@ import com.lextalionis.*;
 
 
 @PageTitle("LexCharacterCreator")
-//@Route(value = "/editor")
-@Route(value = "")
+@Route(value = "/editor")
 public class CharacterCreatorView extends VerticalLayout {
 
     private class SkillElement extends FormLayout{
@@ -125,6 +126,7 @@ public class CharacterCreatorView extends VerticalLayout {
     }
     
     private Character character;
+    private Character old_chara;
     private Select<String> gen;
     private NumberField px;
     private Label pxrim;
@@ -166,10 +168,16 @@ public class CharacterCreatorView extends VerticalLayout {
         );
         add(formLayout);
         
+        old_chara = null;
+
         if(VaadinSession.getCurrent().getAttribute("character") == null){
             character = new Clan.Assamita();
         }else{
-            character = (Character) VaadinSession.getCurrent().getAttribute("character");
+            old_chara = (Character) VaadinSession.getCurrent().getAttribute("character");
+            try{
+                character = (Character) old_chara.clone();
+            }catch(Exception e){}
+            
         }
         
         
@@ -411,17 +419,60 @@ public class CharacterCreatorView extends VerticalLayout {
         add(pxrim);
         add(bloodWill);
 
-        Button b = new Button("Salva");
+        HorizontalLayout buttonWrap = new HorizontalLayout();
+        Button b = new Button("Esporta come scheda");
         b.addClickListener(e -> {
             StreamResource sr = new StreamResource("Scheda.xlsx", () -> Filefactory());
             StreamRegistration registration = VaadinSession.getCurrent().getResourceRegistry().registerResource(sr);
             UI.getCurrent().getPage().open(registration.getResourceUri().toString());
             
         });
-        add(b);
+        buttonWrap.add(b);
 
+        if(VaadinSession.getCurrent().getAttribute("user") != null){
+            Button salva = new Button("Salva");
+            salva.addClickListener(e -> {
+                User user = (User)VaadinSession.getCurrent().getAttribute("user");
+                if(old_chara != null){
+                    user.delChara(old_chara);
+                }
+                user.addChara(character);
+                AWSManager.save(user);
+                UI.getCurrent().getPage().setLocation("/");
+            });
+            buttonWrap.add(salva);
+            add(buttonWrap);
+        }
         
-        
+        if(old_chara != null){
+            Button delete = new Button("Elimina personaggio");
+            delete.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+            delete.addClickListener(e -> {
+                Dialog dialog = new Dialog();
+                String text = "Sei sicuro di voler eliminare " + character.getName() + "?";
+                VerticalLayout vl = new VerticalLayout();
+                dialog.add(vl);
+                vl.add(text);
+                HorizontalLayout hl = new HorizontalLayout();
+                vl.add(hl);
+                Button conferma = new Button("Elimina personaggio");
+                conferma.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+                conferma.addClickListener(ev -> {
+                    User user = (User)VaadinSession.getCurrent().getAttribute("user");
+                    user.delChara(old_chara);
+                    AWSManager.save(user);
+                    UI.getCurrent().getPage().setLocation("/");
+                });
+                hl.add(conferma);
+                Button annulla = new Button("Annulla");
+                annulla.addClickListener(ev -> {
+                    dialog.close();
+                });
+                hl.add(annulla);
+                dialog.open();
+            });
+            add(delete);
+        }
     }
 
     private void chooseProcon(boolean pro){

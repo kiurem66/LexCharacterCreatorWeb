@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
  * 
  * Rappresenta la scheda di un personaggio di LexTallionis
  */
-public abstract class Character implements Serializable{    
+public abstract class Character implements Serializable, Cloneable{    
     private String name;
     private int px;
     private String sentiero;
@@ -32,13 +32,30 @@ public abstract class Character implements Serializable{
         description = "";
     }
 
-    public Character(Character character){
-        this.name = character.name;
-        this.px = character.px;
-        this.sentiero = character.sentiero;
-        this.fazione = character.fazione;
-        this.setStili = character.setStili;
-        this.description = character.description;
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Character other = (Character) super.clone();
+        other.setDiscipline = new HashSet<Disciplina>();
+        for(Disciplina d : this.setDiscipline){
+            other.setDiscipline.add((Disciplina)d.clone());
+        }
+        
+        other.setInfluenze = new HashSet<Influenza>();
+        for(Influenza i : this.setInfluenze){
+            other.setInfluenze.add((Influenza)i.clone());
+        }
+
+        other.setStili = new HashSet<Style>();
+        for(Style s : this.setStili){
+            other.setStili.add((Style)s.clone());
+        }
+
+        other.setProCon = new ArrayList<ProCon>();
+        for(ProCon p : this.setProCon){
+            other.setProCon.add((ProCon)p.clone());
+        }
+
+        return other;
     }
 
     public int getPx() {

@@ -8,14 +8,14 @@ import java.util.NoSuchElementException;
  * Tipo mutabile che implementa Skill
  * Rappresenta una disciplina di un personaggio
  */
-public abstract class Disciplina implements Skill, Iterable<Disciplina.Power>{
+public abstract class Disciplina implements Skill, Iterable<Disciplina.Power>, Cloneable{
     private String name;
     private int level;
     private boolean firstFree;
     private boolean clan;
     private boolean pander;
 
-    public static class Power{
+    public static class Power implements Cloneable{
         private String nome;
         private int livello;
 
@@ -121,6 +121,11 @@ public abstract class Disciplina implements Skill, Iterable<Disciplina.Power>{
             }
             
         };
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     public static class Animalità extends Disciplina{
