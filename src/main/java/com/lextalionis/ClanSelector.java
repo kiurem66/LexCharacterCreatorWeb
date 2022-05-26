@@ -55,7 +55,7 @@ public class ClanSelector {
             case 15: return "Toreador AT";
             case 16: return "Tremere AT";
             case 17: return "Tzimisce";
-            case 18: return "Ventrue ATS";
+            case 18: return "Ventrue AT";
             case 19: return "Bratovich";
             case 20: return "Grimaldi";
             case 21: return "Obertus";
@@ -85,7 +85,7 @@ public class ClanSelector {
             case "Toreador AT": return 15;
             case "Tremere AT": return 16;
             case "Tzimisce": return 17;
-            case "Ventrue": return 18;
+            case "Ventrue AT": return 18;
             case "Bratovich": return 19;
             case "Grimaldi": return 20;
             case "Obertus": return 21;

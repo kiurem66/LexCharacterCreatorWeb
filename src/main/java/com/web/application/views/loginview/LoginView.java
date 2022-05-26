@@ -1,11 +1,11 @@
 package com.web.application.views.loginview;
 
 import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
+
 
 import com.google.common.hash.Hashing;
+import com.lextalionis.DropBoxManager;
 import com.lextalionis.User;
-import com.lextalionis.UserList;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.login.LoginForm;
@@ -15,7 +15,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinSession;
 
 @PageTitle("LexCharacterCreator")
-@Route(value = "/login")
+@Route(value = "/")
 public class LoginView extends VerticalLayout{
     public LoginView(){
         setAlignItems(Alignment.CENTER);
@@ -23,16 +23,16 @@ public class LoginView extends VerticalLayout{
         add(loginForm);
 
         loginForm.addLoginListener((event) -> {
-            for(User u : UserList.getInstance()){
-                if(u.getUsername().equals(event.getUsername())){
-                    String hash = Hashing.sha256().hashString(event.getPassword(), StandardCharsets.UTF_8).toString();
-                    if(u.getHashedPassword().equals(hash)){
-                        VaadinSession.getCurrent().setAttribute("user", u);
-                        UI.getCurrent().getPage().setLocation("/");
-                    }
-                    loginForm.setError(true);
-                    break;
-                }
+            if(!DropBoxManager.getInstance().exists(event.getUsername())){
+                loginForm.setError(true);
+                loginForm.setEnabled(true);
+                return;
+            }
+            User u = DropBoxManager.getInstance().load(event.getUsername());
+            String hash = Hashing.sha256().hashString(event.getPassword(), StandardCharsets.UTF_8).toString();
+            if(u.getHashedPassword().equals(hash)){
+                VaadinSession.getCurrent().setAttribute("user", u);
+                UI.getCurrent().getPage().setLocation("/main");
             }
             loginForm.setError(true);
         });
@@ -43,8 +43,11 @@ public class LoginView extends VerticalLayout{
         });
         add(button);
 
+
+        
         Button edit = new Button("Vai all'editor");
         edit.addClickListener(e -> {
+            VaadinSession.getCurrent().setAttribute("character", null);
             UI.getCurrent().getPage().setLocation("/editor");
         });
         add(edit);

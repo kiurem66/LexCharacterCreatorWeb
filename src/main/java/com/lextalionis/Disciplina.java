@@ -1,5 +1,6 @@
 package com.lextalionis;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -15,7 +16,7 @@ public abstract class Disciplina implements Skill, Iterable<Disciplina.Power>, C
     private boolean clan;
     private boolean pander;
 
-    public static class Power implements Cloneable{
+    public static class Power implements Cloneable, Serializable{
         private String nome;
         private int livello;
 

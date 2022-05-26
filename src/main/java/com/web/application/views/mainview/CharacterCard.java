@@ -3,12 +3,10 @@ package com.web.application.views.mainview;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
-import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.server.VaadinSession;
-import com.lextalionis.*;
 import com.lextalionis.Character;
 
 public class CharacterCard extends ListItem {
@@ -34,15 +32,16 @@ public class CharacterCard extends ListItem {
                 character.getDescription());
         description.addClassName("my-m");
         FormLayout formLayout = new FormLayout();
-        formLayout.setResponsiveSteps(new FormLayout.ResponsiveStep("0px", 2));
-        Button view = new Button("Visualizza");
+        //formLayout.setResponsiveSteps(new FormLayout.ResponsiveStep("0px", 2));
+        formLayout.setResponsiveSteps(new FormLayout.ResponsiveStep("0px", 1));
+        //Button view = new Button("Visualizza");
         Button edit = new Button("Modifica");
         edit.addClickListener(e -> {
             VaadinSession.getCurrent().setAttribute("character", character);
             UI.getCurrent().getPage().setLocation("/editor");
         });
-        formLayout.add(view, edit);
-
+        //formLayout.add(view);
+        formLayout.add(edit);
         add(header, subtitle, description, formLayout);
 
     }

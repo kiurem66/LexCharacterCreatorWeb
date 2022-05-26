@@ -5,6 +5,7 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.checkbox.Checkbox;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.H2;
@@ -32,7 +33,6 @@ import java.util.List;
 
 import com.lextalionis.Character;
 import com.lextalionis.*;
-
 
 @PageTitle("LexCharacterCreator")
 @Route(value = "/editor")
@@ -62,6 +62,7 @@ public class CharacterCreatorView extends VerticalLayout {
                     skill.setFirstLevelFree(c.getValue());
                     updateBloodWillPx();
                 });
+                c.setValue(skill.isFirstLevelFree());
                 left = c;
             }else{
                 Button delete = new Button("-");
@@ -437,12 +438,13 @@ public class CharacterCreatorView extends VerticalLayout {
                     user.delChara(old_chara);
                 }
                 user.addChara(character);
-                AWSManager.save(user);
-                UI.getCurrent().getPage().setLocation("/");
+                DropBoxManager.getInstance().save(user);
+                UI.getCurrent().getPage().setLocation("/main");
             });
             buttonWrap.add(salva);
-            add(buttonWrap);
+            
         }
+        add(buttonWrap);
         
         if(old_chara != null){
             Button delete = new Button("Elimina personaggio");
@@ -460,8 +462,8 @@ public class CharacterCreatorView extends VerticalLayout {
                 conferma.addClickListener(ev -> {
                     User user = (User)VaadinSession.getCurrent().getAttribute("user");
                     user.delChara(old_chara);
-                    AWSManager.save(user);
-                    UI.getCurrent().getPage().setLocation("/");
+                    DropBoxManager.getInstance().save(user);
+                    UI.getCurrent().getPage().setLocation("/main");
                 });
                 hl.add(conferma);
                 Button annulla = new Button("Annulla");

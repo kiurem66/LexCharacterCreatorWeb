@@ -4,36 +4,59 @@ import com.lextalionis.Character;
 import com.lextalionis.User;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.Main;
+import com.vaadin.flow.component.html.OrderedList;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinSession;
 
-
 @PageTitle("LexCharacterCreator")
-@Route(value = "/")
-public class MainView extends VerticalLayout{
+@Route(value = "/main")
+public class MainView extends Main{
     private User user;
 
     public MainView(){
+        addClassNames("main-view", "max-w-screen-lg", "mx-auto", "pb-l", "px-l");
         if(VaadinSession.getCurrent().getAttribute("user") == null){
-            //UI.getCurrent().getPage().setLocation("/login");
-            VaadinSession.getCurrent().setAttribute("user", new User("pippo", ""));
+            UI.getCurrent().getPage().setLocation("/");
         }
         VaadinSession.getCurrent().setAttribute("character", null);
         user = (User) VaadinSession.getCurrent().getAttribute("user");
-        FormLayout charTable = new FormLayout();
-        charTable.setResponsiveSteps(new FormLayout.ResponsiveStep("0px", 1), new FormLayout.ResponsiveStep("250px", 3), new FormLayout.ResponsiveStep("500px", 5));
-        add(charTable);
-        for(Character c : user){
-            charTable.add(new CharacterCard(c));
+        OrderedList imageContainer = new OrderedList();
+        imageContainer.addClassNames("gap-m", "grid", "list-none", "m-0", "p-0");
+        add(imageContainer);
+
+        if(user.hasNoChara()){
+            remove(imageContainer);
+            VerticalLayout v = new VerticalLayout();
+            add(v);
+            v.setAlignItems(Alignment.CENTER);
+            H2 h2 = new H2("Non hai ancora personaggi");
+            v.add(h2);
+            Button edit = new Button("Vai all'editor");
+            edit.addClickListener(e -> {
+                VaadinSession.getCurrent().setAttribute("character", null);
+                UI.getCurrent().getPage().setLocation("/editor");
+            });
+            v.add(edit);
         }
-        Button nuovo = new Button("Nuovo");
+
+        for(Character c : user){
+            imageContainer.add(new CharacterCard(c));
+        }        
+        
+        HorizontalLayout hl = new HorizontalLayout();
+        hl.setAlignItems(Alignment.CENTER);
+        Button nuovo = new Button("Crea nuovo personaggio");
         nuovo.addClickListener(e -> {
             VaadinSession.getCurrent().setAttribute("character", null);
             UI.getCurrent().getPage().setLocation("/editor");
         });
-        add(nuovo);
+        hl.add(nuovo);
+        imageContainer.add(hl);
     }
 }

@@ -44,6 +44,8 @@ public class User implements Serializable, Iterable<Character>{
         charList.remove(character);
     }
 
-
+    public boolean hasNoChara(){
+        return charList.isEmpty();
+    }
     
 }
