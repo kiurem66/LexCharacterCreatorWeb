@@ -27,9 +27,9 @@ public class RevenantClan {
             super();
             addDisciplina(new Disciplina.Dominazione());
             addDisciplina(new Disciplina.Robustezza());
-            addDisciplina(new Disciplina.Vicissitudine());
-            addInfluenza(new Influenza("Sopravvivenza"));
-            addInfluenza(new Influenza("Velocità"));
+            addDisciplina(new Disciplina.Velocità());
+            addInfluenza(new Influenza("Politica"));
+            addInfluenza(new Influenza("Media"));
         }
 
         @Override

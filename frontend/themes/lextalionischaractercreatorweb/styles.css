@@ -26,7 +26,3 @@ html {
       --lumo-shade-80pct: hsla(0, 69%, 18%, 0.8);
       --lumo-shade-90pct: hsla(0, 69%, 18%, 0.9);
     }
-
-.main-color h2{
-  color: hsl(359, 64%, 43%);
-}

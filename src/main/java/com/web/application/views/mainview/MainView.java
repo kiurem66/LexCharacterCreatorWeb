@@ -26,6 +26,17 @@ public class MainView extends Main{
         }
         VaadinSession.getCurrent().setAttribute("character", null);
         user = (User) VaadinSession.getCurrent().getAttribute("user");
+        
+        VerticalLayout vLayout = new VerticalLayout();
+        Button logout = new Button("Logout");
+        vLayout.setAlignItems(Alignment.END);
+        vLayout.add(logout);
+        logout.addClickListener(e -> {
+            VaadinSession.getCurrent().getSession().invalidate();
+            UI.getCurrent().getPage().setLocation("/");
+        });
+        add(vLayout);
+
         OrderedList imageContainer = new OrderedList();
         imageContainer.addClassNames("gap-m", "grid", "list-none", "m-0", "p-0");
         add(imageContainer);
