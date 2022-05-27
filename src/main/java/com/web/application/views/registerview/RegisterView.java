@@ -3,7 +3,7 @@ package com.web.application.views.registerview;
 import java.nio.charset.StandardCharsets;
 
 import com.google.common.hash.Hashing;
-import com.lextalionis.DropBoxManager;
+import com.lextalionis.DBManager;
 import com.lextalionis.User;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -54,12 +54,12 @@ public class RegisterView extends VerticalLayout{
                 errPass.setVisible(true);
                 return;
             }
-            if(DropBoxManager.getInstance().exists(username.getValue())){
+            if(DBManager.getInstance().exists(username.getValue())){
                 errUser.setVisible(true);
                 return;
             }
             User user = new User(username.getValue(), Hashing.sha256().hashString(password.getValue(), StandardCharsets.UTF_8).toString());
-            DropBoxManager.getInstance().save(user);
+            DBManager.getInstance().save(user);
             VaadinSession.getCurrent().setAttribute("user", user);
             UI.getCurrent().getPage().setLocation("/main");
         });

@@ -4,7 +4,7 @@ import java.nio.charset.StandardCharsets;
 
 
 import com.google.common.hash.Hashing;
-import com.lextalionis.DropBoxManager;
+import com.lextalionis.DBManager;
 import com.lextalionis.User;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -23,12 +23,12 @@ public class LoginView extends VerticalLayout{
         add(loginForm);
 
         loginForm.addLoginListener((event) -> {
-            if(!DropBoxManager.getInstance().exists(event.getUsername())){
+            if(!DBManager.getInstance().exists(event.getUsername())){
                 loginForm.setError(true);
                 loginForm.setEnabled(true);
                 return;
             }
-            User u = DropBoxManager.getInstance().load(event.getUsername());
+            User u = DBManager.getInstance().load(event.getUsername());
             String hash = Hashing.sha256().hashString(event.getPassword(), StandardCharsets.UTF_8).toString();
             if(u.getHashedPassword().equals(hash)){
                 VaadinSession.getCurrent().setAttribute("user", u);

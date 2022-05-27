@@ -10,39 +10,17 @@ import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import com.dropbox.core.DbxException;
-import com.dropbox.core.DbxRequestConfig;
-import com.dropbox.core.v2.DbxClientV2;
-import com.dropbox.core.v2.files.DeleteErrorException;
-import com.dropbox.core.v2.files.GetMetadataErrorException;
-import com.dropbox.core.v2.files.UploadErrorException;
-import com.dropbox.core.v2.files.WriteMode;
-
 import java.sql.*;
 
 
 
-public class DropBoxManager {
+public class DBManager {
 
-    private static DropBoxManager instance;
-    private DbxClientV2 client;
+    private static DBManager instance;
     private Connection conn;
 
-    private DropBoxManager(){
-        /*
-        InputStream is = DropBoxManager.class.getResourceAsStream("media/token.txt");
-        InputStreamReader iis = new InputStreamReader(is);
-        BufferedReader reader = new BufferedReader(iis);
-        String token=null;
-        try {
-            token = reader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        DbxRequestConfig config = DbxRequestConfig.newBuilder("Lextalionis").build();
-        client = new DbxClientV2(config, token);
-        */
-        InputStream is = DropBoxManager.class.getResourceAsStream("media/dbcred");
+    private DBManager(){
+        InputStream is = DBManager.class.getResourceAsStream("media/dbcred");
         InputStreamReader iis = new InputStreamReader(is);
         BufferedReader reader = new BufferedReader(iis);
         String url=null;
@@ -52,7 +30,6 @@ public class DropBoxManager {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         
@@ -71,14 +48,12 @@ public class DropBoxManager {
             ps.setBinaryStream(2, bis);
             ps.executeUpdate();
             ps.close();
-            bis.close();
-            //client.files().uploadBuilder("/"+u.getUsername()).withMode(WriteMode.OVERWRITE).uploadAndFinish(bis);
+            bis.close();;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -112,15 +87,14 @@ public class DropBoxManager {
             e.printStackTrace();
             return null;
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             return null;
         }
     }
 
-    public static DropBoxManager getInstance() {
+    public static DBManager getInstance() {
         if(instance == null){
-            instance = new DropBoxManager();
+            instance = new DBManager();
         }
         return instance;
     }
