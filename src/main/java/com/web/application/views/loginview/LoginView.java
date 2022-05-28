@@ -33,8 +33,9 @@ public class LoginView extends VerticalLayout{
             if(u.getHashedPassword().equals(hash)){
                 VaadinSession.getCurrent().setAttribute("user", u);
                 UI.getCurrent().getPage().setLocation("/main");
+            }else{
+                loginForm.setError(true);
             }
-            loginForm.setError(true);
         });
 
         Button button = new Button("Registrati");
