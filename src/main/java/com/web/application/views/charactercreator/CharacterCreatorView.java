@@ -437,7 +437,7 @@ public class CharacterCreatorView extends VerticalLayout {
                     user.delChara(old_chara);
                 }
                 user.addChara(character);
-                DropBoxManager.getInstance().save(user);
+                DBManager.getInstance().save(user);
                 UI.getCurrent().getPage().setLocation("/main");
             });
             buttonWrap.add(salva);
@@ -461,7 +461,7 @@ public class CharacterCreatorView extends VerticalLayout {
                 conferma.addClickListener(ev -> {
                     User user = (User)VaadinSession.getCurrent().getAttribute("user");
                     user.delChara(old_chara);
-                    DropBoxManager.getInstance().save(user);
+                    DBManager.getInstance().save(user);
                     UI.getCurrent().getPage().setLocation("/main");
                 });
                 hl.add(conferma);
