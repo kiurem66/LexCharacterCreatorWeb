@@ -46,7 +46,7 @@ public class CharacterCreatorView extends VerticalLayout {
         public SkillElement(Skill skill){
 
             setResponsiveSteps(
-                new FormLayout.ResponsiveStep("0", 3)
+                new FormLayout.ResponsiveStep("0", 2)
             );
             this.name = new Label(skill.getName());
             if(skill instanceof Influenza)
@@ -87,9 +87,10 @@ public class CharacterCreatorView extends VerticalLayout {
                 skill.setLevel(level.getValue().intValue());
                 updateBloodWillPx();
             }); 
-
-            add(left);
-            add(name);
+            HorizontalLayout hl = new HorizontalLayout();
+            hl.add(left);
+            hl.add(name);
+            add(hl);
             add(level);
         }
     }
