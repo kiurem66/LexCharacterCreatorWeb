@@ -129,12 +129,12 @@ public abstract class Disciplina implements Skill, Iterable<Disciplina.Power>, C
         return super.clone();
     }
 
-    public static class Animalità extends Disciplina{
-        public Animalità(){
+    public static class Animalita extends Disciplina{
+        public Animalita(){
             this(false);
         }
 
-        public Animalità(boolean pander) {
+        public Animalita(boolean pander) {
             super("Animalità", pander);
             addPotere(new Power("Sussurri Ferini", 1));
             addPotere(new Power("Richiamo", 2));
@@ -438,12 +438,12 @@ public abstract class Disciplina implements Skill, Iterable<Disciplina.Power>, C
         }
     }
 
-    public static class Velocità extends Disciplina{
-        public Velocità(){
+    public static class Velocita extends Disciplina{
+        public Velocita(){
             this(false);
         }
 
-        public Velocità(boolean pander) {
+        public Velocita(boolean pander) {
             super("Velocità", pander);
             addPotere(new Power("Riflessi", 1));
             addPotere(new Power("Destrezza", 2));

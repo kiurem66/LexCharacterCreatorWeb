@@ -9,7 +9,7 @@ public class RevenantClan {
     public static class Bratovich extends Revenant{
         public Bratovich(){
             super();
-            addDisciplina(new Disciplina.Animalità());
+            addDisciplina(new Disciplina.Animalita());
             addDisciplina(new Disciplina.Potenza());
             addDisciplina(new Disciplina.Vicissitudine());
             addInfluenza(new Influenza("Sopravvivenza"));
@@ -27,7 +27,7 @@ public class RevenantClan {
             super();
             addDisciplina(new Disciplina.Dominazione());
             addDisciplina(new Disciplina.Robustezza());
-            addDisciplina(new Disciplina.Velocità());
+            addDisciplina(new Disciplina.Velocita());
             addInfluenza(new Influenza("Politica"));
             addInfluenza(new Influenza("Media"));
         }

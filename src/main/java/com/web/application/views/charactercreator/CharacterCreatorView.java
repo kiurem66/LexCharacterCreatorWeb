@@ -303,7 +303,7 @@ public class CharacterCreatorView extends VerticalLayout {
             confirm.addClickListener(ev -> {
                 Disciplina d =null;
                 switch(select.getValue()){
-                    case "Animalità": d = new Disciplina.Animalità(); break;
+                    case "Animalità": d = new Disciplina.Animalita(); break;
                     case "Ascendente": d = new Disciplina.Ascendente(); break;
                     case "Auspex": d = new Disciplina.Auspex(); break;
                     case "Chimerismo": d = new Disciplina.Chimerismo(); break;
@@ -320,7 +320,7 @@ public class CharacterCreatorView extends VerticalLayout {
                     case "Serpentis": d = new Disciplina.Serpentis(); break;
                     case "Taumaturgia": d = new Disciplina.Taumaturgia(); break;
                     case "Valeren": d = new Disciplina.Valeren(); break;
-                    case "Velocità": d = new Disciplina.Velocità(); break;
+                    case "Velocità": d = new Disciplina.Velocita(); break;
                     case "Vicissitudine": d = new Disciplina.Vicissitudine(); break;
                 }
                 d.setClan(false);

@@ -11,7 +11,7 @@ public final class Clan {
             super();
             addDisciplina(new Disciplina.Oscurazione());
             addDisciplina(new Disciplina.Quietus());
-            addDisciplina(new Disciplina.Velocità());
+            addDisciplina(new Disciplina.Velocita());
             addInfluenza(new Influenza("Esercito"));
             addInfluenza(new Influenza("Sicurezza"));
             addInfluenza(new Influenza("Sopravvivenza"));
@@ -74,7 +74,7 @@ public final class Clan {
             super();
             addDisciplina(new Disciplina.Ascendente());
             addDisciplina(new Disciplina.Potenza());
-            addDisciplina(new Disciplina.Velocità());
+            addDisciplina(new Disciplina.Velocita());
             addInfluenza(new Influenza("Crimine"));
             addInfluenza(new Influenza("Politica"));
             addInfluenza(new Influenza("Sopravvivenza"));
@@ -107,7 +107,7 @@ public final class Clan {
     public static class CountryGangrel extends Vampire{
         public CountryGangrel(){
             super();
-            addDisciplina(new Disciplina.Animalità());
+            addDisciplina(new Disciplina.Animalita());
             addDisciplina(new Disciplina.Proteide());
             addDisciplina(new Disciplina.Robustezza());
             addInfluenza(new Influenza("Mentore"));
@@ -146,7 +146,7 @@ public final class Clan {
             super();
             addDisciplina(new Disciplina.Oscurazione());
             addDisciplina(new Disciplina.Proteide());
-            addDisciplina(new Disciplina.Velocità());
+            addDisciplina(new Disciplina.Velocita());
             addInfluenza(new Influenza("Crimine"));
             addInfluenza(new Influenza("Media"));
             addInfluenza(new Influenza("Medicina"));
@@ -329,7 +329,7 @@ public final class Clan {
     public static class Nosferatu extends Vampire{
         public Nosferatu(){
             super();
-            addDisciplina(new Disciplina.Animalità());
+            addDisciplina(new Disciplina.Animalita());
             addDisciplina(new Disciplina.Oscurazione());
             addDisciplina(new Disciplina.Potenza());
             addInfluenza(new Influenza("Media"));
@@ -368,14 +368,14 @@ public final class Clan {
     public static class Pander extends Vampire{
         public Pander(){
             super();
-            addDisciplina(new Disciplina.Animalità(true));
+            addDisciplina(new Disciplina.Animalita(true));
             addDisciplina(new Disciplina.Ascendente(true));
             addDisciplina(new Disciplina.Auspex(true));
             addDisciplina(new Disciplina.Dominazione(true));
             addDisciplina(new Disciplina.Oscurazione(true));
             addDisciplina(new Disciplina.Potenza(true));
             addDisciplina(new Disciplina.Robustezza(true));
-            addDisciplina(new Disciplina.Velocità(true));
+            addDisciplina(new Disciplina.Velocita(true));
             addInfluenza(new Influenza("Sopravvivenza"));
         }
 
@@ -415,7 +415,7 @@ public final class Clan {
         //Ah ok ne ho visto uno giocato
         public Ravnos(){
             super();
-            addDisciplina(new Disciplina.Animalità());
+            addDisciplina(new Disciplina.Animalita());
             addDisciplina(new Disciplina.Chimerismo());
             addDisciplina(new Disciplina.Robustezza());
             addInfluenza(new Influenza("Crimine"));
@@ -555,7 +555,7 @@ public final class Clan {
             super();
             addDisciplina(new Disciplina.Ascendente());
             addDisciplina(new Disciplina.Auspex());
-            addDisciplina(new Disciplina.Velocità());
+            addDisciplina(new Disciplina.Velocita());
             addInfluenza(new Influenza("Accademiche"));
             addInfluenza(new Influenza("Alta società"));
             addInfluenza(new Influenza("Media"));
@@ -623,7 +623,7 @@ public final class Clan {
     public static class Tzimisce extends Vampire{
         public Tzimisce(){
             super();
-            addDisciplina(new Disciplina.Animalità());
+            addDisciplina(new Disciplina.Animalita());
             addDisciplina(new Disciplina.Auspex());
             addDisciplina(new Disciplina.Vicissitudine());
             addInfluenza(new Influenza("Accademiche"));
